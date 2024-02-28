@@ -36,10 +36,17 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter Chat'),
+        actions: [
+          IconButton(
+            onPressed: _logout,
+            icon: const Icon(Icons.exit_to_app),
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        ],
       ),
-      body: Center(
-          child:
-              ElevatedButton(onPressed: _logout, child: const Text('Logout'))),
+      body: const Center(
+        child: Text('Logged in'),
+      ),
     );
   }
 }
