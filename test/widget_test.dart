@@ -9,11 +9,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:chat_app/main.dart';
+import 'dart:convert';
+import 'package:json_theme/json_theme.dart';
+import 'package:flutter/services.dart';
 
-void main() {
+void main() async {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    final themeStr =
+        await rootBundle.loadString('assets/theme/appainter_theme.json');
+    final themeJson = jsonDecode(themeStr);
+    final theme = ThemeDecoder.decodeThemeData(themeJson)!;
+
+    // Run the app
+    runApp(MyApp(theme: theme));
+
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp(theme: theme));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

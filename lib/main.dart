@@ -1,22 +1,16 @@
+import 'dart:convert';
+
 import 'package:chat_app/screens/auth.dart';
 import 'package:chat_app/screens/chat.dart';
 import 'package:chat_app/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
 
 // Needed to run Firebase SDK
 import 'package:firebase_core/firebase_core.dart';
+import 'package:json_theme/json_theme.dart';
 import 'firebase_options.dart';
-
-final theme = ThemeData(
-  useMaterial3: true,
-  colorScheme: ColorScheme.fromSeed(
-    brightness: Brightness.light,
-    seedColor: Colors.lightBlue,
-  ),
-  textTheme: GoogleFonts.robotoTextTheme(),
-);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,14 +20,19 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  final themeStr =
+      await rootBundle.loadString('assets/theme/appainter_theme.json');
+  final themeJson = jsonDecode(themeStr);
+  final theme = ThemeDecoder.decodeThemeData(themeJson)!;
+
   // Run the app
-  runApp(
-    const MyApp(),
-  );
+  runApp(MyApp(theme: theme));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final ThemeData theme;
+
+  const MyApp({super.key, required this.theme});
 
   @override
   Widget build(BuildContext context) {
