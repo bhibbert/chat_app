@@ -10,10 +10,20 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:chat_app/main.dart';
 
-void main() {
+// Needed for appainter themes
+import 'package:json_theme/json_theme.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
+
+void main() async {
+  final themeStr =
+      await rootBundle.loadString('assets/theme/appainter_theme.json');
+  final themeJson = jsonDecode(themeStr);
+  final theme = ThemeDecoder.decodeThemeData(themeJson)!;
+
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp(theme: theme));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
