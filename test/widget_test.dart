@@ -13,17 +13,7 @@ import 'dart:convert';
 import 'package:json_theme/json_theme.dart';
 import 'package:flutter/services.dart';
 
-// Needed for appainter themes
-import 'package:json_theme/json_theme.dart';
-import 'dart:convert';
-import 'package:flutter/services.dart';
-
 void main() async {
-  final themeStr =
-      await rootBundle.loadString('assets/theme/appainter_theme.json');
-  final themeJson = jsonDecode(themeStr);
-  final theme = ThemeDecoder.decodeThemeData(themeJson)!;
-
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     final themeStr =
         await rootBundle.loadString('assets/theme/appainter_theme.json');
