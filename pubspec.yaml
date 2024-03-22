@@ -43,6 +43,7 @@ dependencies:
   envied: ^0.5.3
   json_theme: ^6.4.1
   cloud_firestore: ^4.15.9
+  firebase_messaging: ^14.7.20
 
 dev_dependencies:
   flutter_test:
