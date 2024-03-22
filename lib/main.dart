@@ -12,8 +12,6 @@ import 'package:json_theme/json_theme.dart';
 import 'firebase_options.dart';
 
 // Needed for appainter themes
-import 'package:json_theme/json_theme.dart';
-import 'dart:convert';
 import 'package:flutter/services.dart';
 
 void main() async {
