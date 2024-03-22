@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:chat_app/screens/auth.dart';
 import 'package:chat_app/screens/chat.dart';
 import 'package:chat_app/screens/splash.dart';
@@ -6,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 // Needed to run Firebase SDK
 import 'package:firebase_core/firebase_core.dart';
+import 'package:json_theme/json_theme.dart';
 import 'firebase_options.dart';
 
 // Needed for appainter themes

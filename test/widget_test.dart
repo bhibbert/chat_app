@@ -9,6 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:chat_app/main.dart';
+import 'dart:convert';
+import 'package:json_theme/json_theme.dart';
+import 'package:flutter/services.dart';
 
 // Needed for appainter themes
 import 'package:json_theme/json_theme.dart';
@@ -22,6 +25,14 @@ void main() async {
   final theme = ThemeDecoder.decodeThemeData(themeJson)!;
 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    final themeStr =
+        await rootBundle.loadString('assets/theme/appainter_theme.json');
+    final themeJson = jsonDecode(themeStr);
+    final theme = ThemeDecoder.decodeThemeData(themeJson)!;
+
+    // Run the app
+    runApp(MyApp(theme: theme));
+
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp(theme: theme));
 
